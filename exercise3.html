@@ -1,0 +1,69 @@
+<script>
+    var apple, grape, orange; // Simpan data kuantitas
+
+    var priceApple = 10000
+    var priceGrape = 15000
+    var priceOrange = 20000
+
+    var stockApple = 5
+    var stockGrape = 9
+    var stockOrange = 10
+    
+do{
+    
+    apple = prompt('Masukkan jumlah Apel Rp.10000' + "\n" + "Stock 5") // Keluarin pop up di browser
+    while(apple > stockApple || apple <0){
+        alert("Terjadi Kesalahan Jumlah");
+        apple = prompt('Masukkan jumlah Apel Rp.10000' + "\n" + "Stock 5")}
+
+    do{
+    grape = prompt('Masukkan jumlah Anggur Rp.15000' + "\n" + "Stock 9")
+    if (grape > stockGrape || grape <0){
+        alert("Terjadi Kesalahan Jumlah")
+    } 
+    } while(grape > stockGrape || grape <0)
+
+    do{
+    orange = prompt('Masukkan jumlah jeruk Rp.20000' + "\n" + "Stock 10")
+    if (orange > stockOrange || orange <0){
+        alert("Terjadi Kesalahan Jumlah")
+    } 
+    }while(orange > stockOrange || orange <0)
+
+    if (grape == 0 && orange == 0 && apple == 0){
+        alert("Transaksi Error")}
+
+    // Ketika semuanya 0
+    }while(grape == 0 && orange == 0 && apple == 0)
+    
+
+    var totalApple = apple * priceApple // Harga total untuk setiap buah
+    var totalGrape = grape * priceGrape
+    var totalOrange = orange * priceOrange
+
+    var totalPrice = totalApple + totalGrape + totalOrange
+    var pajak = totalPrice * 0.05;
+    
+    alert(
+        'Detail Belanja \n\n' +
+        'Apple : ' + apple + ' x ' + priceApple + ' = ' + totalApple + '\n' +
+        'Grape : ' + grape + ' x ' + priceGrape + ' = ' + totalGrape + '\n' +
+        'Orange : ' + orange + ' x ' + priceOrange + ' = ' + totalOrange + '\n\n'+
+        'Total : ' + totalPrice + ' + 5% Tax ' + pajak + ' = Rp.' + (totalPrice+pajak)
+    )
+    
+    do{
+    var Uang = prompt("Totalnya : " + (totalPrice+pajak) + "\n\n" + "Masukkan Jumlah Uang")
+    if (Uang > (totalPrice + pajak)){
+        alert("Kembaliannya : " + (Uang - (totalPrice + pajak)))
+    }
+    else if(Uang == (totalPrice+pajak))
+    {
+        alert ("Terimakasih")
+    }
+    else if(Uang < (totalPrice+pajak)){
+        alert("Uang Kurang Sebesar :" + Math.abs (Uang - (totalPrice+pajak)))
+    }
+    }while(Uang < (totalPrice+pajak))
+
+</script>
