@@ -1,0 +1,96 @@
+<script>
+
+    var fruits = ["Apple", "Grape", "Orange"];
+    var stock = [5, 7, 8]
+    var price = [20000, 15000, 10000]
+    var qty = [0, 0, 0]
+    var total = [0, 0, 0]
+
+    var welcome, melihat, membeli, menghapus, menambah;
+    
+    var mainMenu = true;
+
+    do{
+        var daftarbuah = "";
+            for (i=0; i < fruits.length; i++){
+            daftarbuah += (i+1) + ". " + fruits[i] + " | " + stock[i] + " | " + price[i] +  "\n"; // (i+1) untuk angka depan
+            }
+       
+        var welcome = parseInt(prompt("Selamat Datang, Mau apa? \n\n" + 
+        "0. Melihat Buah \n" +
+        "1. Menambah Buah \n" +
+        "2. Menghapus Buah \n" +
+        "3. Membeli Buah"));
+
+        if (welcome == 0){
+            
+            alert("Berikut adalah Buah yang Tersedia : \n\n" + daftarbuah)
+        }
+
+        else if (welcome == 1){
+            fruits[fruits.length] = prompt("Masukkan Buah")
+            stock[stock.length] = parseInt(prompt("Masukkan Stock"))
+            price[price.length] = parseInt(prompt("Masukkan Price"))
+        }
+        
+        else if (welcome == 2){
+            fruits.splice(parseInt(prompt("Pilih Produk untuk Dihapus: \n\n" + daftarbuah))-1, 1) 
+
+            // // Menghapus product
+            // var daftarbuah= 'Pilih buah yang ingin dihapus\n\n'
+            // for (var i = 0; i < fruits.length; i++) {
+            //     daftarbuah += (i + 1) + ' ' + fruits[i] + '\n'
+                
+            // }
+
+            // // Menerima pilihan buah dari user
+            // // Dikurangi 1 karena array dimulai dari nol
+            // var selected = parseInt(prompt(daftarbuah)) - 1
+
+            // // Menghapus satu data pada array
+            // fruits.splice(selected, 1)
+            // stock.splice(selected, 1)
+            // price.splice(selected, 1)
+           
+        }
+
+        else if(welcome == 3){
+            do {
+            for(var i = 0; i < fruits.length; i++){
+                do{
+                qty[i] = prompt("Masukkan jumlah " + fruits[i] + "\n" + "Stock " + fruits[i] + ": " + stock[i]);
+                if(qty[i] > stock[i])
+                alert("Stock Tidak Tersedia \n\nStock " + fruits[i] + " Hanya " + stock[i]);
+                }while (qty[i] > stock[i] || qty[i] < 0)
+            }
+            
+            var totalfruits = "";
+            var hargatotal = 0;
+            for (var i = 0; i < fruits.length; i++){
+            totalfruits += fruits[i] + " : " + qty[i] + " x " + price[i] + " = " + "Rp." + (qty[i] * price[i]) + "\n";
+            hargatotal += (qty[i] * price[i])
+            
+        }    if (hargatotal != 0){   alert("Keranjang : \n\n" + totalfruits + "\n" + "Total : Rp. " + hargatotal)}
+        else{
+                alert("Minimal Membeli 1 Buah")}
+            
+        } while (hargatotal == 0);
+        
+        do {
+            var biaya = prompt("Masukkan jumlah uang \n" +
+                "Total yang harus dibayar = Rp. " + hargatotal)
+
+            if (biaya > hargatotal) {
+                alert("Senang Berbisnis dengan Anda \nKembalian Rp. " + (biaya - hargatotal));
+            } else if (biaya < hargatotal) {
+                alert("Uang Anda Kurang Rp. " + (hargatotal - biaya));
+            } else if (biaya == hargatotal) {
+                alert("Uang Anda Pas \n\nTerimakasih");
+            }
+        } while (biaya < hargatotal);
+    }  
+    mainMenu = confirm("Kembali ke Menu?") 
+    
+}while(mainMenu)
+
+</script>

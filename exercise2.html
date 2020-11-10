@@ -1,0 +1,66 @@
+<script>
+    var apple, grape, orange; // Simpan data kuantitas
+
+    var priceApple = 10000
+    var priceGrape = 15000
+    var priceOrange = 20000
+
+    var stockApple = 5
+    var stockGrape = 9
+    var stockOrange = 10
+
+    apple = prompt('Masukkan jumlah Apel Rp.10000' + "\n" + "Stock 5") // Keluarin pop up di browser
+    if (apple > stockApple){
+        alert("Terjadi Kesalahan Jumlah")
+    } 
+    grape = prompt('Masukkan jumlah Anggur Rp.15000' + "\n" + "Stock 9")
+    if (grape > stockGrape){
+        alert("Terjadi Kesalahan Jumlah")
+    } 
+    orange = prompt('Masukkan jumlah jeruk Rp.20000' + "\n" + "Stock 10")
+    if (orange > stockOrange){
+        alert("Terjadi Kesalahan Jumlah")
+    } 
+
+    if (apple > stockApple || orange > stockOrange || grape > stockGrape){
+        alert("Transaksi Dibatalkan, Terdapat Kesalahan Jumlah")
+    }
+    
+    else if(grape == 0 && orange == 0 && apple == 0 || grape <0 || orange <0 || apple <0){
+        alert("Transaksi Error")
+    }
+    
+    else {
+    // Math.pow(1,2); 
+    // Math.pow(3,2); => 3^2 = 9
+    // Math.pow(2,2); => 2^2 = 4
+
+    var totalApple = apple * priceApple // Harga total untuk setiap buah
+    var totalGrape = grape * priceGrape
+    var totalOrange = orange * priceOrange
+
+    var totalPrice = totalApple + totalGrape + totalOrange
+    var pajak = totalPrice * 0.05;
+    
+    alert(
+        'Detail Belanja \n\n' +
+        'Apple : ' + apple + ' x ' + priceApple + ' = ' + totalApple + '\n' +
+        'Grape : ' + grape + ' x ' + priceGrape + ' = ' + totalGrape + '\n' +
+        'Orange : ' + orange + ' x ' + priceOrange + ' = ' + totalOrange + '\n\n'+
+        'Total : ' + totalPrice + ' + 5% Tax ' + pajak + ' = Rp.' + (totalPrice+pajak)
+    )
+
+    var Uang = prompt("Totalnya : " + (totalPrice+pajak) + "\n\n" + "Masukkan Jumlah Uang")
+    if (Uang > (totalPrice + pajak)){
+    alert("Kembaliannya : " + (Uang - (totalPrice + pajak)))
+    }
+    else if(Uang == (totalPrice+pajak))
+    {
+    alert ("Terimakasih")
+    }
+    else{
+        alert("Uang Kurang Sebesar :" + Math.abs (Uang - (totalPrice+pajak)))
+    }
+}
+
+</script>

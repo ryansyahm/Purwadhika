@@ -1,0 +1,151 @@
+<script>
+    class Products{
+    constructor(_name, _price, _stock) {
+        this.name = _name
+        this.price = _price
+        this.stock = _stock
+        this.qty = 0
+        this.total = 0
+    }
+}
+
+class Cake extends Products{
+    constructor(_name, _price, _stock, _flavour){
+        super(_name, _price, _stock)
+        this.kategori = 1
+        this.flavour = _flavour
+    }
+}
+
+class Bread extends Products{
+    constructor(_name, _price, _stock, _sweet){
+        super(_name, _price, _stock)
+        this.kategori = 2
+        this.sweet = _sweet
+    }
+}
+
+let products = [
+    {kategori: 1, name : "Birthday Cake", price: 50000, stock: 10, flavour : "Chocolate", qty : 0, total: 0},
+    {kategori: 2, name : "Sari Roti", price: 5000, stock: 20, sweet: "Medium", qty : 0, total: 0},
+
+
+]
+
+function allList(data) {
+    
+    let productsList = 'Daftar Products\n\n'
+    for (let i = 0; i < data.length; i++) {
+
+        if(data[i].kategori == 1){
+            productsList += (i + 1) + ". " + data[i].name + " | Stock : " + data[i].stock + " | "  + "Flavour : " + 
+             data[i].flavour + " | Price : " + data[i].price +"\n"
+        } else if(data[i].kategori == 2){
+            productsList += (i + 1) + ". " + data[i].name + " | Stock : " + data[i].stock + " | "  + "Sweet : " + 
+            data[i].sweet + " | Price : " + data[i].price +"\n"
+        }   
+    }
+
+    return productsList
+}
+
+var mainMenu = true;
+
+do{       
+        var welcome = parseInt(prompt("Selamat Datang, Mau apa? \n\n" + 
+        "0. Melihat Produk \n" +
+        "1. Menambah Produk \n" +
+        "2. Menghapus Produk \n" +
+        "3. Membeli Produk"));
+
+    if(welcome == 0) {
+        // Tampilkan daftar products
+        alert(allList(products))
+
+    } else if (welcome == 1){
+        var katelist = parseInt(
+            prompt(
+                "Pilih Kategori yang Ingin Ditambahkan :\n\n" +
+                "1 . Kue \n" +
+                "2 . Roti \n"
+            )
+        )
+
+        var namapro = prompt("Masukkan Produk :")
+        var stockpro = parseInt(prompt("Masukkan Jumlah Stock :"))
+        var hargapro = parseInt(prompt("Masukkan Jumlah Harga :"))
+
+        var tambahpro
+
+        if(katelist == 1){
+            var rasapro = prompt("Masukkan Rasa Produk :")
+            tambahpro = new Cake(namapro, hargapro, stockpro, rasapro)
+
+        } else if(katelist == 2){
+            var sweetpro = prompt("Masukkan Tingkat Manis Produk :")
+            tambahpro = new Bread(namapro, hargapro, stockpro, sweetpro)
+        }
+
+        products.push(tambahpro)
+
+        alert(allList(products))
+
+    } else if (welcome == 2) {
+
+        products.splice(parseInt(prompt("Pilih Produk untuk Dihapus: \n\n" + allList(products)))-1, 1)
+
+        alert(allList(products))
+
+    } else if (welcome == 3) {
+        let belilagi = false
+
+        do{
+            var pro = prompt(allList(products)) -1
+        
+            var qtypro = parseInt(prompt("Masukkan Jumlah " + products[pro].name + products[pro].stock))
+
+            if(qtypro > products[pro].stock || qtypro <= 0){
+                alert("Terdapat Kesalahan Input, Stock " + products[pro].name + " = " + products[pro].stock)
+                belilagi = true
+            } else {
+                products[pro].qty = products[pro].qty + qtypro
+                products[pro].stock = products[pro].stock - qtypro
+                belilagi = confirm("Mau Belanja Lagi?")
+            }
+        }while(belilagi)
+
+        var hargatotal = 0
+        for(i = 0 ; i < products.length ; i++){
+            products[i].total = products[i].qty * products[i].price
+            hargatotal += products[i].total
+        }
+
+        var keranjang = "";
+        for(i = 0 ; i < products.length ; i++){
+
+            if(products[i].qty > 0){
+                keranjang +=  products[i].name + " : " + products[i].qty + " x " + products[i].price + " = " + products[i].total + "\n"
+            }
+        }
+        alert("Keranjang : \n" + keranjang + "\nTotal : " + hargatotal
+        )
+
+        do {
+            var uang = prompt("Masukkan Uang")
+            if(uang < hargatotal){
+                alert("Uang Anda Kurang :" + (Math.abs(uang - hargatotal)))
+            } else if (uang == hargatotal) {
+                alert("Uang Anda Pas\n\nTerimakasih")
+            } else{
+                alert("Kembalian :" + (uang - hargatotal))
+            }
+        for (i = 0; i < products.length; i++) {
+        products[i].qty = products[i].total = 0
+    }
+        } while (uang < hargatotal);
+        mainMenu = confirm("Kembali ke Menu?")
+    }  else{
+    mainMenu = false
+    }
+} while (mainMenu);
+</script> 

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+        function kuadratkan(){
+            var angka1 = parseInt(document.getElementById("angka1").value);
+            var angka2 = parseInt(document.getElementById("angka2").value);
+            var hasil = Math.pow(angka1,angka2);
+            var output = "Hasil " + angka1 + "<sup>" + angka2 + "</sup>" + " = " + hasil;
+            document.getElementById("output").innerHTML = output;
+        }
+</script>
+<body>
+        <p>Masukkan Angka 1</p>
+        <input type="number" id="angka1"/>
+        <p>Masukkan Angka 2</p>
+        <input type="number" id="angka2"/>
+        <button onclick="kuadratkan()">
+            Kuadratkan
+        </button>
+        <h3 id="output"></h3>
+</body>
+</html>
